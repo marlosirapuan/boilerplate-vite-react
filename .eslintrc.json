@@ -7,9 +7,38 @@
     "standard-react"
   ],
   "plugins": [
-    "jsx-a11y"
+    "jsx-a11y",
+    "simple-import-sort"
   ],
   "rules": {
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          // Packages. `react` related packages come first.
+          // Things that start with a letter (or digit or underscore), or `@` followed by a letter.
+          ["^react", "^date?\\w"],
+          ["^@?\\w"],
+          ["^@/api?\\w"],
+          ["^@/config?\\w", "^@/core/slices?\\w"],
+          ["^@/core/hooks?\\w"],
+          ["^@/core?\\w"],
+          ["^@/pages?\\w"],
+          ["^@/components?\\w"],
+          ["^@/theme/?\\w", "^@/utils?\\w", "^@/assets?\\w"],
+          // Absolute imports and Relative imports.
+          [
+            "^@(utils|services|hooks|hoc|types|contexts|dictionary)(/.*|$)",
+            "^\\."
+          ],
+          // for scss imports.
+          ["^[^.]"]
+        ]
+      }
+    ],
+    "simple-import-sort/exports": "error",
+    "import/first": "error",
+    "import/newline-after-import": "error",
     "comma-dangle": [
       "error",
       {
@@ -24,8 +53,15 @@
     "react/react-in-jsx-scope": "off",
     "react/jsx-pascal-case": "off",
     "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": ["off", {
-      "ignoreRestSiblings": true
+    "@typescript-eslint/explicit-function-return-type": [
+      "error",
+      {
+        "allowExpressions": true
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": ["error", {
+      "ignoreRestSiblings": true,
+      "argsIgnorePattern": "_"
     }]
   }
 }
