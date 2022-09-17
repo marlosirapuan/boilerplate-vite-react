@@ -52,6 +52,7 @@
     "no-undef": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-pascal-case": "off",
+    "jsx-quotes": ["error", "prefer-double"], 
     "no-unused-vars": "off",
     "@typescript-eslint/explicit-function-return-type": [
       "error",
